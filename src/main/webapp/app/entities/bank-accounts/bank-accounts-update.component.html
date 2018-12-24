@@ -1,0 +1,102 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-bank-accounts-heading">Create or edit a Bank Accounts</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!bankAccounts.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="bankAccounts.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nameOfBank">Name Of Bank</label>
+                    <select class="form-control" name="nameOfBank" [(ngModel)]="bankAccounts.nameOfBank" id="field_nameOfBank"  required>
+                        <option value="HDFC">HDFC</option>
+                        <option value="SBI">SBI</option>
+                        <option value="ICICI">ICICI</option>
+                        <option value="ANDHRABANK">ANDHRABANK</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.nameOfBank?.dirty && editForm.controls.nameOfBank?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nameOfBank?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_accountNumber">Account Number</label>
+                    <input type="number" class="form-control" name="accountNumber" id="field_accountNumber"
+                        [(ngModel)]="bankAccounts.accountNumber" required/>
+                    <div [hidden]="!(editForm.controls.accountNumber?.dirty && editForm.controls.accountNumber?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.accountNumber?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.accountNumber?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_typeOfAccount">Type Of Account</label>
+                    <input type="text" class="form-control" name="typeOfAccount" id="field_typeOfAccount"
+                        [(ngModel)]="bankAccounts.typeOfAccount" required/>
+                    <div [hidden]="!(editForm.controls.typeOfAccount?.dirty && editForm.controls.typeOfAccount?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.typeOfAccount?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ifsCode">Ifs Code</label>
+                    <input type="text" class="form-control" name="ifsCode" id="field_ifsCode"
+                        [(ngModel)]="bankAccounts.ifsCode" required/>
+                    <div [hidden]="!(editForm.controls.ifsCode?.dirty && editForm.controls.ifsCode?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ifsCode?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_branch">Branch</label>
+                    <input type="text" class="form-control" name="branch" id="field_branch"
+                        [(ngModel)]="bankAccounts.branch" required/>
+                    <div [hidden]="!(editForm.controls.branch?.dirty && editForm.controls.branch?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.branch?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_corporateId">Corporate Id</label>
+                    <input type="number" class="form-control" name="corporateId" id="field_corporateId"
+                        [(ngModel)]="bankAccounts.corporateId" required/>
+                    <div [hidden]="!(editForm.controls.corporateId?.dirty && editForm.controls.corporateId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.corporateId?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.corporateId?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

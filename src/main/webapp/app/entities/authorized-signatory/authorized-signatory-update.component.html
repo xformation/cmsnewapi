@@ -1,0 +1,90 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-authorized-signatory-heading">Create or edit a Authorized Signatory</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!authorizedSignatory.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="authorizedSignatory.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_signatoryName">Signatory Name</label>
+                    <input type="text" class="form-control" name="signatoryName" id="field_signatoryName"
+                        [(ngModel)]="authorizedSignatory.signatoryName" required/>
+                    <div [hidden]="!(editForm.controls.signatoryName?.dirty && editForm.controls.signatoryName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.signatoryName?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_signatoryFatherName">Signatory Father Name</label>
+                    <input type="text" class="form-control" name="signatoryFatherName" id="field_signatoryFatherName"
+                        [(ngModel)]="authorizedSignatory.signatoryFatherName" required/>
+                    <div [hidden]="!(editForm.controls.signatoryFatherName?.dirty && editForm.controls.signatoryFatherName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.signatoryFatherName?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_signatoryDesignation">Signatory Designation</label>
+                    <input type="text" class="form-control" name="signatoryDesignation" id="field_signatoryDesignation"
+                        [(ngModel)]="authorizedSignatory.signatoryDesignation" required/>
+                    <div [hidden]="!(editForm.controls.signatoryDesignation?.dirty && editForm.controls.signatoryDesignation?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.signatoryDesignation?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_address">Address</label>
+                    <input type="text" class="form-control" name="address" id="field_address"
+                        [(ngModel)]="authorizedSignatory.address" required/>
+                    <div [hidden]="!(editForm.controls.address?.dirty && editForm.controls.address?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.address?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="authorizedSignatory.email" required/>
+                    <div [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.email?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_panCardNumber">Pan Card Number</label>
+                    <input type="text" class="form-control" name="panCardNumber" id="field_panCardNumber"
+                        [(ngModel)]="authorizedSignatory.panCardNumber" required/>
+                    <div [hidden]="!(editForm.controls.panCardNumber?.dirty && editForm.controls.panCardNumber?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.panCardNumber?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

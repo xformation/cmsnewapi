@@ -1,0 +1,97 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="legalEntity">
+            <h2><span>Legal Entity</span> {{legalEntity.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Logo</span></dt>
+                <dd>
+                    <span>{{legalEntity.logo}}</span>
+                </dd>
+                <dt><span>Legal Name Of The College</span></dt>
+                <dd>
+                    <span>{{legalEntity.legalNameOfTheCollege}}</span>
+                </dd>
+                <dt><span>Type Of College</span></dt>
+                <dd>
+                    <span>{{legalEntity.typeOfCollege}}</span>
+                </dd>
+                <dt><span>Date Of Incorporation</span></dt>
+                <dd>
+                    <span>{{legalEntity.dateOfIncorporation}}</span>
+                </dd>
+                <dt><span>Registered Office Address</span></dt>
+                <dd>
+                    <span>{{legalEntity.registeredOfficeAddress}}</span>
+                </dd>
+                <dt><span>College Identification Number</span></dt>
+                <dd>
+                    <span>{{legalEntity.collegeIdentificationNumber}}</span>
+                </dd>
+                <dt><span>Pan</span></dt>
+                <dd>
+                    <span>{{legalEntity.pan}}</span>
+                </dd>
+                <dt><span>Tan</span></dt>
+                <dd>
+                    <span>{{legalEntity.tan}}</span>
+                </dd>
+                <dt><span>Tan Circle Number</span></dt>
+                <dd>
+                    <span>{{legalEntity.tanCircleNumber}}</span>
+                </dd>
+                <dt><span>Cit Tds Location</span></dt>
+                <dd>
+                    <span>{{legalEntity.citTdsLocation}}</span>
+                </dd>
+                <dt><span>Form Signatory</span></dt>
+                <dd>
+                    <span>{{legalEntity.formSignatory}}</span>
+                </dd>
+                <dt><span>Pf Number</span></dt>
+                <dd>
+                    <span>{{legalEntity.pfNumber}}</span>
+                </dd>
+                <dt><span>Registration Date</span></dt>
+                <dd>
+                    <span>{{legalEntity.registrationDate}}</span>
+                </dd>
+                <dt><span>Esi Number</span></dt>
+                <dd>
+                    <span>{{legalEntity.esiNumber}}</span>
+                </dd>
+                <dt><span>Pt Registration Date</span></dt>
+                <dd>
+                    <span>{{legalEntity.ptRegistrationDate}}</span>
+                </dd>
+                <dt><span>Pt Signatory</span></dt>
+                <dd>
+                    <span>{{legalEntity.ptSignatory}}</span>
+                </dd>
+                <dt><span>Pt Number</span></dt>
+                <dd>
+                    <span>{{legalEntity.ptNumber}}</span>
+                </dd>
+                <dt><span>Authorized Signatory</span></dt>
+                <dd>
+                    <div *ngIf="legalEntity.authorizedSignatoryId">
+                        <a [routerLink]="['/authorized-signatory', legalEntity.authorizedSignatoryId, 'view']">{{legalEntity.authorizedSignatoryId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/legal-entity', legalEntity.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

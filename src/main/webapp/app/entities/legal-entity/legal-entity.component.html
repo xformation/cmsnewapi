@@ -1,0 +1,107 @@
+<div>
+    <h2 id="page-heading">
+        <span>Legal Entities</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-legal-entity" [routerLink]="['/legal-entity/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down" >
+            Create new Legal Entity
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="legalEntities">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Logo</span></th>
+            <th><span>Legal Name Of The College</span></th>
+            <th><span>Type Of College</span></th>
+            <th><span>Date Of Incorporation</span></th>
+            <th><span>Registered Office Address</span></th>
+            <th><span>College Identification Number</span></th>
+            <th><span>Pan</span></th>
+            <th><span>Tan</span></th>
+            <th><span>Tan Circle Number</span></th>
+            <th><span>Cit Tds Location</span></th>
+            <th><span>Form Signatory</span></th>
+            <th><span>Pf Number</span></th>
+            <th><span>Registration Date</span></th>
+            <th><span>Esi Number</span></th>
+            <th><span>Pt Registration Date</span></th>
+            <th><span>Pt Signatory</span></th>
+            <th><span>Pt Number</span></th>
+            <th><span>Authorized Signatory</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let legalEntity of legalEntities ;trackBy: trackId">
+                <td><a [routerLink]="['/legal-entity', legalEntity.id, 'view' ]">{{legalEntity.id}}</a></td>
+                <td>{{legalEntity.logo}}</td>
+                <td>{{legalEntity.legalNameOfTheCollege}}</td>
+                <td>{{legalEntity.typeOfCollege}}</td>
+                <td>{{legalEntity.dateOfIncorporation | date:'mediumDate'}}</td>
+                <td>{{legalEntity.registeredOfficeAddress}}</td>
+                <td>{{legalEntity.collegeIdentificationNumber}}</td>
+                <td>{{legalEntity.pan}}</td>
+                <td>{{legalEntity.tan}}</td>
+                <td>{{legalEntity.tanCircleNumber}}</td>
+                <td>{{legalEntity.citTdsLocation}}</td>
+                <td>{{legalEntity.formSignatory}}</td>
+                <td>{{legalEntity.pfNumber}}</td>
+                <td>{{legalEntity.registrationDate | date:'mediumDate'}}</td>
+                <td>{{legalEntity.esiNumber}}</td>
+                <td>{{legalEntity.ptRegistrationDate | date:'mediumDate'}}</td>
+                <td>{{legalEntity.ptSignatory}}</td>
+                <td>{{legalEntity.ptNumber}}</td>
+                <td>
+                    <div *ngIf="legalEntity.authorizedSignatoryId">
+                        <a [routerLink]="['../authorized-signatory', legalEntity.authorizedSignatoryId , 'view' ]" >{{legalEntity.authorizedSignatoryId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/legal-entity', legalEntity.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/legal-entity', legalEntity.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'legal-entity/'+ legalEntity.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

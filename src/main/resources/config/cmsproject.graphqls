@@ -1,0 +1,268 @@
+scalar LocalDate
+
+enum SYear {
+  I
+  II
+  III
+  IV
+}
+
+enum Sem {
+    SEMI
+    SEMII
+}
+
+enum Status {
+    ACTIVE
+    DEACTIVE
+}
+
+
+enum ClassSection {
+    A
+    B
+}
+
+type SectionDTO {
+  id: ID!
+  section: String
+  studentyearId: Long!
+}
+
+type StudentYearDTO {
+  id: ID!
+  sYear: String
+}
+
+type SemesterDTO {
+  id: ID!
+  sem: String
+}
+
+
+enum ClassPeriods {
+    ONE 
+    TWO
+    THREE
+    FOUR
+    FIVE
+}
+
+type PeriodsDTO {
+	id: ID!
+	periods: String
+	sectionId: Long!
+	
+}
+
+type TeacherDTO {
+    id: ID!
+    tName: String
+    periodsId: Long!
+}
+
+enum Elective {
+    JAVA
+    C
+}
+
+enum Common {
+    MATHS
+    PHYSICS
+    CHEMISTRY
+    DBMS
+}
+
+input StudentAttendanceFilter {
+  sName: String
+}
+
+enum OrderType {
+  ASC
+  DESC
+}
+
+enum OrderField {
+  id
+  sName
+}
+
+input StudentAttendanceOrder {
+  field: OrderField
+  order: OrderType
+}
+
+type StudentDTO {
+    id: ID!
+    sName: String!
+    attendance: Boolean!
+    electiveSub: String!
+    teacherId: Long!
+}
+
+type SubjectDTO{
+   id: ID!
+   commonSub: String!
+   electiveSub: String!
+   periodsId: Long!
+   studentId: Long!
+   teacherId: Long!
+}
+
+
+type CollegeBranchesDTO{
+   id: ID!
+   branchName: String!
+   description: String!
+   collegeHead: String!
+   collegeId: Long!
+}
+
+type DepartmentsDTO{
+   id: ID!
+   name: String!
+   description: String!
+   deptHead: String!
+}
+
+type LocationDTO{
+   id: ID!
+   name: String!
+   address: String!
+   appliesTo: String!
+}
+
+type CollegeDTO{
+	id: ID!
+	shortName: String!
+	logo: Long!
+	backgroundImage: Long!
+	instructionInformation: String!	
+}
+
+enum NameOfBank{
+HDFC, SBI, ICICI, ANDHRABANK
+}
+
+enum TypeOfCollege{
+PRIVATE, PUBLIC
+}
+
+type LegalEntityDTO {
+  id: ID!
+  logo: Long!
+  legalNameOfTheCollege: String
+  typeOfCollege: String
+  dateOfIncorporation:LocalDate!
+  registeredOfficeAddress: String!
+  collegeIdentificationNumber: String!
+  pan: String!
+  tan: String!
+  tanCircleNumber: String!
+  citTdsLocation: String!
+  formSignatory: String!
+  pfNumber: String!
+  registrationDate: LocalDate!
+  esiNumber: Long!
+  ptRegistrationDate: LocalDate!
+  ptSignatory: String!
+  ptNumber: Long!
+  authorizedSignatoryId: Long!
+}
+
+type StudentAttendanceDTO {
+  id: ID!
+  attendanceDate: LocalDate!
+  status: String!
+  sName: String!
+  comments: String!
+  studentYearId: Long!
+  departmentsId: Long!
+  subjectId: Long!
+  semesterId: Long!
+  sectionId: Long!
+  periodsId: Long!
+  studentId: Long!
+}
+
+type AuthorizedSignatoryDTO{
+   signatoryName: String
+   signatoryFatherName: String!
+   signatoryDesignation: String!
+   address: String!
+   email: String!
+   panCardNumber: String!
+
+}
+
+type BankAccountsDTO{
+    nameOfBank: String
+    accountNumber: Long!
+    typeOfAccount: String!
+    ifsCode: String!
+    branch: String!
+    corporateId: Long!
+}
+
+type StudentAttendance {
+  id: ID!
+  attendanceDate: LocalDate!
+  status: String!
+  sName: String!
+  comments: String!
+}
+type Query {
+  findStudentYear(id:ID!): StudentYearDTO
+  findSection(id:ID!): SectionDTO
+  findPeriods(id:ID!): PeriodsDTO
+  findTeacher(id:ID!): TeacherDTO
+  findStudent(id:ID!): StudentDTO
+  findSubject(id:ID!): SubjectDTO
+  findCollegeBranches(id:ID!): CollegeBranchesDTO
+  findDepartments(id:ID!): DepartmentsDTO
+  findLocation(id:ID!): LocationDTO
+  findCollege(id : ID!): CollegeDTO
+  findLegalEntity(id:ID!): LegalEntityDTO
+  findAuthorizedSignatory(id:ID!): AuthorizedSignatoryDTO
+  findBankAccounts(id:ID!): BankAccountsDTO
+  findStudentAttendance(id:ID!): StudentAttendanceDTO
+  findSemester(id:ID!): SemesterDTO
+  findAllByLocation: [LocationDTO!]!
+   students(filter: StudentAttendanceFilter, orders: [StudentAttendanceOrder!]): [StudentAttendance!]!
+  now: LocalDate
+}
+
+
+type Mutation {
+  newStudentYear(id: ID!, s_year: SYear): StudentYearDTO!
+  newSection(id: ID!, section: ClassSection!, studentyearId: Long!): SectionDTO!
+  newPeriods(id: ID!, periods: ClassPeriods!, sectionId: Long!): PeriodsDTO!
+  newTeacher(id: ID!, tName: String!, periodsId: Long!): TeacherDTO!
+  newStudent(id: ID!, sName: String!, attendance: Boolean!, electiveSub: Elective!, teacherId: Long!): StudentDTO!
+  newSubject(id:ID!,commonSub: Common!, electiveSub: Elective!, periodsId: Long!, studentId: Long,teacherId: Long!): SubjectDTO!
+  newCollegeBranches(id:ID!,branchName: String!, description: String!, collegeHead: String!,collegeId:Long!): CollegeBranchesDTO!
+  newDepartments(id:ID!,name: String!, description: String!, deptHead: String!): DepartmentsDTO!
+  newLocation(id:ID!,name: String!, address: String!, appliesTo: String!): LocationDTO!
+  newCollege(id:ID!,shortName: String!, logo: Long!, backgroundImage: Long!, instructionInformation: String!):CollegeDTO!
+  newLegalEntity(id:ID!, logo:Long, legalNameOfTheCollege: String!, typeOfCollege: TypeOfCollege!, dateOfIncorporation: LocalDate!, registeredOfficeAddress: String!, collegeIdentificationNumber: String!, pan: String!, tan: String!, tanCircleNumber: String!, citTdsLocation: String!, formSignatory: String!, pfNumber: String!, registrationDate: LocalDate!, esiNumber: Long!, ptRegistrationDate: LocalDate!, ptSignatory: String!, ptNumber: Long!, authorizedSignatoryId: Long! ): LegalEntityDTO
+  newAuthorizedSignatory(id:ID!, signatoryName: String!, signatoryFatherName: String!, signatoryDesignation: String!, address: String!, email: String!, panCardNumber: String!): AuthorizedSignatoryDTO
+  newBankAccounts(id:ID!, nameOfBank: NameOfBank!, accountNumber: Long!, typeOfAccount: String!, ifsCode: String!, branch: String!,corporateId: Long): BankAccountsDTO
+  newSemester(id: ID!, sem: Sem): SemesterDTO!
+  newStudentAttendance(id: ID!, attendanceDate : LocalDate!,sName: String!, status: Status, comments:  String!,studentYearId: Long, departmentsId: Long, subjectId: Long, semesterId: Long, sectionId: Long, periodsId: Long, studentId: Long): StudentAttendanceDTO
+  deleteStudentYear(id: ID!): Boolean!
+  deleteStudentAttendance(id: ID!): Boolean!
+  deleteSemester(id: ID!): Boolean
+  deleteSection(id: ID!): Boolean!
+  deletePeriods(id: ID!): Boolean!
+  deleteTeacher(id: ID!): Boolean!
+  deleteStudent(id: ID!): Boolean!
+  deleteSubject(id: ID!): Boolean!
+  deleteLegalEntity(id: ID!): Boolean!
+  deleteAuthorizedSignatory(id: ID!): Boolean!
+  deleteBankAccounts(id: ID!): Boolean!
+  deleteCollegeBranches(id: ID!): Boolean!
+  deleteDepartments(id: ID!): Boolean!
+  deleteLocation(id: ID!): Boolean!
+  deleteCollege(id: ID!): Boolean!
+  plusDay(input: LocalDate!): LocalDate!
+}

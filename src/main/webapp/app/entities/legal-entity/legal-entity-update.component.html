@@ -1,0 +1,247 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-legal-entity-heading">Create or edit a Legal Entity</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!legalEntity.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="legalEntity.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_logo">Logo</label>
+                    <input type="number" class="form-control" name="logo" id="field_logo"
+                        [(ngModel)]="legalEntity.logo" required/>
+                    <div [hidden]="!(editForm.controls.logo?.dirty && editForm.controls.logo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.logo?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.logo?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_legalNameOfTheCollege">Legal Name Of The College</label>
+                    <input type="text" class="form-control" name="legalNameOfTheCollege" id="field_legalNameOfTheCollege"
+                        [(ngModel)]="legalEntity.legalNameOfTheCollege" required/>
+                    <div [hidden]="!(editForm.controls.legalNameOfTheCollege?.dirty && editForm.controls.legalNameOfTheCollege?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.legalNameOfTheCollege?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_typeOfCollege">Type Of College</label>
+                    <select class="form-control" name="typeOfCollege" [(ngModel)]="legalEntity.typeOfCollege" id="field_typeOfCollege"  required>
+                        <option value="PRIVATE">PRIVATE</option>
+                        <option value="PUBLIC">PUBLIC</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.typeOfCollege?.dirty && editForm.controls.typeOfCollege?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.typeOfCollege?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dateOfIncorporation">Date Of Incorporation</label>
+                    <div class="input-group">
+                        <input id="field_dateOfIncorporation" type="text" class="form-control" name="dateOfIncorporation" ngbDatepicker  #dateOfIncorporationDp="ngbDatepicker" [(ngModel)]="legalEntity.dateOfIncorporation"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateOfIncorporationDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.dateOfIncorporation?.dirty && editForm.controls.dateOfIncorporation?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.dateOfIncorporation?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_registeredOfficeAddress">Registered Office Address</label>
+                    <input type="text" class="form-control" name="registeredOfficeAddress" id="field_registeredOfficeAddress"
+                        [(ngModel)]="legalEntity.registeredOfficeAddress" required/>
+                    <div [hidden]="!(editForm.controls.registeredOfficeAddress?.dirty && editForm.controls.registeredOfficeAddress?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.registeredOfficeAddress?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_collegeIdentificationNumber">College Identification Number</label>
+                    <input type="text" class="form-control" name="collegeIdentificationNumber" id="field_collegeIdentificationNumber"
+                        [(ngModel)]="legalEntity.collegeIdentificationNumber" required/>
+                    <div [hidden]="!(editForm.controls.collegeIdentificationNumber?.dirty && editForm.controls.collegeIdentificationNumber?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.collegeIdentificationNumber?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_pan">Pan</label>
+                    <input type="text" class="form-control" name="pan" id="field_pan"
+                        [(ngModel)]="legalEntity.pan" required/>
+                    <div [hidden]="!(editForm.controls.pan?.dirty && editForm.controls.pan?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.pan?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tan">Tan</label>
+                    <input type="text" class="form-control" name="tan" id="field_tan"
+                        [(ngModel)]="legalEntity.tan" required/>
+                    <div [hidden]="!(editForm.controls.tan?.dirty && editForm.controls.tan?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.tan?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tanCircleNumber">Tan Circle Number</label>
+                    <input type="text" class="form-control" name="tanCircleNumber" id="field_tanCircleNumber"
+                        [(ngModel)]="legalEntity.tanCircleNumber" required/>
+                    <div [hidden]="!(editForm.controls.tanCircleNumber?.dirty && editForm.controls.tanCircleNumber?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.tanCircleNumber?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_citTdsLocation">Cit Tds Location</label>
+                    <input type="text" class="form-control" name="citTdsLocation" id="field_citTdsLocation"
+                        [(ngModel)]="legalEntity.citTdsLocation" required/>
+                    <div [hidden]="!(editForm.controls.citTdsLocation?.dirty && editForm.controls.citTdsLocation?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.citTdsLocation?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_formSignatory">Form Signatory</label>
+                    <input type="text" class="form-control" name="formSignatory" id="field_formSignatory"
+                        [(ngModel)]="legalEntity.formSignatory" required/>
+                    <div [hidden]="!(editForm.controls.formSignatory?.dirty && editForm.controls.formSignatory?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.formSignatory?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_pfNumber">Pf Number</label>
+                    <input type="text" class="form-control" name="pfNumber" id="field_pfNumber"
+                        [(ngModel)]="legalEntity.pfNumber" required/>
+                    <div [hidden]="!(editForm.controls.pfNumber?.dirty && editForm.controls.pfNumber?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.pfNumber?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_registrationDate">Registration Date</label>
+                    <div class="input-group">
+                        <input id="field_registrationDate" type="text" class="form-control" name="registrationDate" ngbDatepicker  #registrationDateDp="ngbDatepicker" [(ngModel)]="legalEntity.registrationDate"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="registrationDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.registrationDate?.dirty && editForm.controls.registrationDate?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.registrationDate?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_esiNumber">Esi Number</label>
+                    <input type="number" class="form-control" name="esiNumber" id="field_esiNumber"
+                        [(ngModel)]="legalEntity.esiNumber" required/>
+                    <div [hidden]="!(editForm.controls.esiNumber?.dirty && editForm.controls.esiNumber?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.esiNumber?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.esiNumber?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ptRegistrationDate">Pt Registration Date</label>
+                    <div class="input-group">
+                        <input id="field_ptRegistrationDate" type="text" class="form-control" name="ptRegistrationDate" ngbDatepicker  #ptRegistrationDateDp="ngbDatepicker" [(ngModel)]="legalEntity.ptRegistrationDate"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="ptRegistrationDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.ptRegistrationDate?.dirty && editForm.controls.ptRegistrationDate?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ptRegistrationDate?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ptSignatory">Pt Signatory</label>
+                    <input type="text" class="form-control" name="ptSignatory" id="field_ptSignatory"
+                        [(ngModel)]="legalEntity.ptSignatory" required/>
+                    <div [hidden]="!(editForm.controls.ptSignatory?.dirty && editForm.controls.ptSignatory?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ptSignatory?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ptNumber">Pt Number</label>
+                    <input type="number" class="form-control" name="ptNumber" id="field_ptNumber"
+                        [(ngModel)]="legalEntity.ptNumber" required/>
+                    <div [hidden]="!(editForm.controls.ptNumber?.dirty && editForm.controls.ptNumber?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ptNumber?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.ptNumber?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_authorizedSignatory">Authorized Signatory</label>
+                    <select class="form-control" id="field_authorizedSignatory" name="authorizedSignatory" [(ngModel)]="legalEntity.authorizedSignatoryId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="authorizedSignatoryOption.id" *ngFor="let authorizedSignatoryOption of authorizedsignatories; trackBy: trackAuthorizedSignatoryById">{{authorizedSignatoryOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

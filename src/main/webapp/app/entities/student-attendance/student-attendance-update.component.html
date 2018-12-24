@@ -1,0 +1,124 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-student-attendance-heading">Create or edit a Student Attendance</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!studentAttendance.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="studentAttendance.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_attendanceDate">Attendance Date</label>
+                    <div class="input-group">
+                        <input id="field_attendanceDate" type="text" class="form-control" name="attendanceDate" ngbDatepicker  #attendanceDateDp="ngbDatepicker" [(ngModel)]="studentAttendance.attendanceDate"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="attendanceDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.attendanceDate?.dirty && editForm.controls.attendanceDate?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.attendanceDate?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sName">S Name</label>
+                    <input type="text" class="form-control" name="sName" id="field_sName"
+                        [(ngModel)]="studentAttendance.sName" required/>
+                    <div [hidden]="!(editForm.controls.sName?.dirty && editForm.controls.sName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.sName?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_status">Status</label>
+                    <select class="form-control" name="status" [(ngModel)]="studentAttendance.status" id="field_status"  required>
+                        <option value="ACTIVE">ACTIVE</option>
+                        <option value="DEACTIVE">DEACTIVE</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.status?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_comments">Comments</label>
+                    <input type="text" class="form-control" name="comments" id="field_comments"
+                        [(ngModel)]="studentAttendance.comments" required/>
+                    <div [hidden]="!(editForm.controls.comments?.dirty && editForm.controls.comments?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.comments?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_studentYear">Student Year</label>
+                    <select class="form-control" id="field_studentYear" name="studentYear" [(ngModel)]="studentAttendance.studentYearId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="studentYearOption.id" *ngFor="let studentYearOption of studentyears; trackBy: trackStudentYearById">{{studentYearOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_departments">Departments</label>
+                    <select class="form-control" id="field_departments" name="departments" [(ngModel)]="studentAttendance.departmentsId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="departmentsOption.id" *ngFor="let departmentsOption of departments; trackBy: trackDepartmentsById">{{departmentsOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_subject">Subject</label>
+                    <select class="form-control" id="field_subject" name="subject" [(ngModel)]="studentAttendance.subjectId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="subjectOption.id" *ngFor="let subjectOption of subjects; trackBy: trackSubjectById">{{subjectOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_semester">Semester</label>
+                    <select class="form-control" id="field_semester" name="semester" [(ngModel)]="studentAttendance.semesterId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="semesterOption.id" *ngFor="let semesterOption of semesters; trackBy: trackSemesterById">{{semesterOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_section">Section</label>
+                    <select class="form-control" id="field_section" name="section" [(ngModel)]="studentAttendance.sectionId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="sectionOption.id" *ngFor="let sectionOption of sections; trackBy: trackSectionById">{{sectionOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_periods">Periods</label>
+                    <select class="form-control" id="field_periods" name="periods" [(ngModel)]="studentAttendance.periodsId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="periodsOption.id" *ngFor="let periodsOption of periods; trackBy: trackPeriodsById">{{periodsOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_student">Student</label>
+                    <select class="form-control" id="field_student" name="student" [(ngModel)]="studentAttendance.studentId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="studentOption.id" *ngFor="let studentOption of students; trackBy: trackStudentById">{{studentOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

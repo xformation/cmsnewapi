@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="college">
+            <h2><span>College</span> {{college.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Short Name</span></dt>
+                <dd>
+                    <span>{{college.shortName}}</span>
+                </dd>
+                <dt><span>Logo</span></dt>
+                <dd>
+                    <span>{{college.logo}}</span>
+                </dd>
+                <dt><span>Background Image</span></dt>
+                <dd>
+                    <span>{{college.backgroundImage}}</span>
+                </dd>
+                <dt><span>Instruction Information</span></dt>
+                <dd>
+                    <span>{{college.instructionInformation}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/college', college.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

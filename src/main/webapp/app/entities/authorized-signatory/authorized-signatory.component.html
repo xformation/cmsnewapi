@@ -1,0 +1,79 @@
+<div>
+    <h2 id="page-heading">
+        <span>Authorized Signatories</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-authorized-signatory" [routerLink]="['/authorized-signatory/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down" >
+            Create new Authorized Signatory
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="authorizedSignatories">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Signatory Name</span></th>
+            <th><span>Signatory Father Name</span></th>
+            <th><span>Signatory Designation</span></th>
+            <th><span>Address</span></th>
+            <th><span>Email</span></th>
+            <th><span>Pan Card Number</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let authorizedSignatory of authorizedSignatories ;trackBy: trackId">
+                <td><a [routerLink]="['/authorized-signatory', authorizedSignatory.id, 'view' ]">{{authorizedSignatory.id}}</a></td>
+                <td>{{authorizedSignatory.signatoryName}}</td>
+                <td>{{authorizedSignatory.signatoryFatherName}}</td>
+                <td>{{authorizedSignatory.signatoryDesignation}}</td>
+                <td>{{authorizedSignatory.address}}</td>
+                <td>{{authorizedSignatory.email}}</td>
+                <td>{{authorizedSignatory.panCardNumber}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/authorized-signatory', authorizedSignatory.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/authorized-signatory', authorizedSignatory.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'authorized-signatory/'+ authorizedSignatory.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

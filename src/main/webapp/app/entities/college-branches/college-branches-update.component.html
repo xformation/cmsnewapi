@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-college-branches-heading">Create or edit a College Branches</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!collegeBranches.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="collegeBranches.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_branchName">Branch Name</label>
+                    <input type="text" class="form-control" name="branchName" id="field_branchName"
+                        [(ngModel)]="collegeBranches.branchName" required/>
+                    <div [hidden]="!(editForm.controls.branchName?.dirty && editForm.controls.branchName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.branchName?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="collegeBranches.description" required/>
+                    <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.description?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_collegeHead">College Head</label>
+                    <input type="text" class="form-control" name="collegeHead" id="field_collegeHead"
+                        [(ngModel)]="collegeBranches.collegeHead" required/>
+                    <div [hidden]="!(editForm.controls.collegeHead?.dirty && editForm.controls.collegeHead?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.collegeHead?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_college">College</label>
+                    <select class="form-control" id="field_college" name="college" [(ngModel)]="collegeBranches.collegeId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="collegeOption.id" *ngFor="let collegeOption of colleges; trackBy: trackCollegeById">{{collegeOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

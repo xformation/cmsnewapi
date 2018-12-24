@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="authorizedSignatory">
+            <h2><span>Authorized Signatory</span> {{authorizedSignatory.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Signatory Name</span></dt>
+                <dd>
+                    <span>{{authorizedSignatory.signatoryName}}</span>
+                </dd>
+                <dt><span>Signatory Father Name</span></dt>
+                <dd>
+                    <span>{{authorizedSignatory.signatoryFatherName}}</span>
+                </dd>
+                <dt><span>Signatory Designation</span></dt>
+                <dd>
+                    <span>{{authorizedSignatory.signatoryDesignation}}</span>
+                </dd>
+                <dt><span>Address</span></dt>
+                <dd>
+                    <span>{{authorizedSignatory.address}}</span>
+                </dd>
+                <dt><span>Email</span></dt>
+                <dd>
+                    <span>{{authorizedSignatory.email}}</span>
+                </dd>
+                <dt><span>Pan Card Number</span></dt>
+                <dd>
+                    <span>{{authorizedSignatory.panCardNumber}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/authorized-signatory', authorizedSignatory.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

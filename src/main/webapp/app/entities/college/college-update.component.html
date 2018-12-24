@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-college-heading">Create or edit a College</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!college.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="college.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_shortName">Short Name</label>
+                    <input type="text" class="form-control" name="shortName" id="field_shortName"
+                        [(ngModel)]="college.shortName" required/>
+                    <div [hidden]="!(editForm.controls.shortName?.dirty && editForm.controls.shortName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.shortName?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_logo">Logo</label>
+                    <input type="number" class="form-control" name="logo" id="field_logo"
+                        [(ngModel)]="college.logo" required/>
+                    <div [hidden]="!(editForm.controls.logo?.dirty && editForm.controls.logo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.logo?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.logo?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_backgroundImage">Background Image</label>
+                    <input type="number" class="form-control" name="backgroundImage" id="field_backgroundImage"
+                        [(ngModel)]="college.backgroundImage" required/>
+                    <div [hidden]="!(editForm.controls.backgroundImage?.dirty && editForm.controls.backgroundImage?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.backgroundImage?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.backgroundImage?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_instructionInformation">Instruction Information</label>
+                    <input type="text" class="form-control" name="instructionInformation" id="field_instructionInformation"
+                        [(ngModel)]="college.instructionInformation" required/>
+                    <div [hidden]="!(editForm.controls.instructionInformation?.dirty && editForm.controls.instructionInformation?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.instructionInformation?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
